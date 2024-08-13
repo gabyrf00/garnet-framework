@@ -18,7 +18,7 @@ export enum SIZING {
     Xlarge = 5
 }
 
-
+export const garnet_cidr = "10.128.12.0/24"
 
 export const garnet_constant = {
     garnet_version: version,

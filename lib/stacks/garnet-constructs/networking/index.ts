@@ -1,6 +1,6 @@
-import { SubnetType, Vpc } from "aws-cdk-lib/aws-ec2"
+import { SubnetType, Vpc, IpAddresses } from "aws-cdk-lib/aws-ec2"
 import { Construct } from "constructs"
-import { garnet_broker } from "../../../../constants"
+import { garnet_broker, garnet_cidr } from "../../../../constants"
 
 
 export interface GarnetNetworkingProps {
@@ -17,6 +17,7 @@ export class GarnetNetworking extends Construct {
 
     // VPC
     const vpc = new Vpc(this, `VpcGarnet${broker_id}`, {
+      ipAddresses: IpAddresses.cidr(garnet_cidr),
       natGateways: 1,
       availabilityZones: [`${props.az1}`,`${props.az2}`],
       vpcName: `garnet-vpc-${broker_id.toLowerCase()}`,
